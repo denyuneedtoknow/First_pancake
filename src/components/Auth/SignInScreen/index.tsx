@@ -50,14 +50,6 @@ const SignInScreen: React.FC = () => {
           paddingLeft="20%"
           paddingRight="20%"
         >
-          <Box
-            display="flex"
-            flexDirection="column"
-            paddingTop="100px"
-            textAlign="center"
-          >
-            <Logo />
-          </Box>
           <Box paddingTop="50px" paddingBottom="50px">
             <Typography variant="h3">Login</Typography>
           </Box>

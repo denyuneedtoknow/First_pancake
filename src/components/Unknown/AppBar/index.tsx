@@ -75,7 +75,7 @@ const AppBar: React.FC = () => {
               padding: 0,
             }}
           >
-            Voypost
+            Project
           </p>
         </div>
         <button
