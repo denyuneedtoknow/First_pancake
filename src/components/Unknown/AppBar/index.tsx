@@ -56,7 +56,7 @@ const AppBar: React.FC = () => {
       <div
         style={{
           height: 60,
-          backgroundColor: '#F50057',
+          backgroundColor: '#004dc9',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
