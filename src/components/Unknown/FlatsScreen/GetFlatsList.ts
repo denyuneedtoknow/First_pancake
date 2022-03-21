@@ -6,6 +6,11 @@ import app from '../../../common/firebaseApp';
 const db = firebase.firestore(app);
 
 export const GetFlatsList = (): Promise<QuerySnapshot> =>
-  db.collection('flats').get();
+  db.collection('flats').orderBy('publishedAt').limitToLast(20).get();
 export const GetFlatsListByCity = (city: string): Promise<QuerySnapshot> =>
-  db.collection('flats').where('cityName', '==', `${city}`).get();
+  db
+    .collection('flats')
+    .where('cityName', '==', `${city}`)
+    .orderBy('publishedAt')
+    .limitToLast(20)
+    .get();
