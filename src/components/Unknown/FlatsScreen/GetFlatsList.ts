@@ -5,6 +5,7 @@ import app from '../../../common/firebaseApp';
 
 const db = firebase.firestore(app);
 
-const GetFlatsList = (): Promise<QuerySnapshot> => db.collection('flats').get();
-
-export default GetFlatsList;
+export const GetFlatsList = (): Promise<QuerySnapshot> =>
+  db.collection('flats').get();
+export const GetFlatsListByCity = (city: string): Promise<QuerySnapshot> =>
+  db.collection('flats').where('cityName', '==', `${city}`).get();

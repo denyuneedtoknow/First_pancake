@@ -1,12 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLocation, useHistory } from 'react-router-dom';
-import { Box, Typography, List, Grid } from '@mui/material';
-import { DocumentData } from '@firebase/firestore-types';
-import { UIContext } from '../UIContext';
+import React from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
+import { Box, Typography, Grid } from '@mui/material';
+
 import AppBar from '../AppBar';
-import GetFlatsList from './GetFlatsList';
-import { Flat } from '../../../../types';
-import FlatCard from './FlatCard';
 import FlatsSearcher from './FlatsSearcher';
 import FlatCardsList from './FlatCardsList';
 
@@ -18,14 +14,14 @@ const FlatsScreen: React.FC = () => {
     if (keyword) {
       history.push({
         ...location,
-        search: `query=${keyword}`,
+        search: `city=${keyword}`,
       });
     }
   };
   return (
     <Box>
       <AppBar />
-      <Grid container xs={12}>
+      <Grid container item xs={12}>
         <Grid item xs={8}>
           <Typography variant="h4" mt={3} mb={3} ml={2}>
             flats for rent

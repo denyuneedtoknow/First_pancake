@@ -31,7 +31,7 @@ const FlatCard: React.FC<Flat> = ({
           flexDirection: 'row',
         }}
       >
-        <Grid container xs={12}>
+        <Grid container>
           <Grid item xs={6}>
             <CardMedia
               component="img"

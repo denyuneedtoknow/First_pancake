@@ -3,32 +3,32 @@ import { useLocation, useHistory } from 'react-router-dom';
 import { List } from '@mui/material';
 import { DocumentData } from '@firebase/firestore-types';
 import { UIContext } from '../UIContext';
-import GetFlatsList from './GetFlatsList';
+import { GetFlatsList, GetFlatsListByCity } from './GetFlatsList';
 import FlatCard from './FlatCard';
 
 const FlatCardsList: React.FC = () => {
   const [flatsList, setFlatsList] = useState<DocumentData[]>([]);
   const history = useHistory();
   const location = useLocation();
-  const searchParam = new URLSearchParams(location.search).get('query') ?? '';
+  const searchParam = new URLSearchParams(location.search).get('city') ?? '';
 
   const { setAlert } = useContext(UIContext);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const snapshot = await GetFlatsList();
-        const allFlatsList = snapshot.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }));
-        console.log(allFlatsList);
-        const LowKeyCityName = searchParam.toLowerCase();
-        console.log(LowKeyCityName);
-        // const filteredFlatsList:Array<number|string> = allFlatsList.filter((availiableFlats) =>
-        // availiableFlats.cityName.toLowerCase().includes(LowKeyCityName),
-        setFlatsList(
-          snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })),
-        );
+        if (searchParam === '') {
+          const snapshot = await GetFlatsList();
+          setFlatsList(
+            snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })),
+          );
+        }
+        if (searchParam) {
+          console.log(searchParam);
+          const snapshot = await GetFlatsListByCity(searchParam);
+          setFlatsList(
+            snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })),
+          );
+        }
       } catch (error) {
         setAlert({
           show: true,
@@ -37,13 +37,8 @@ const FlatCardsList: React.FC = () => {
         });
       }
     };
-    // const LowKeyCityName = searchParam.toLowerCase();
-    // const flatsList = flatsList.filter((availiableFlats) =>
-    //   availiableFlats.cityName.toLowerCase().includes(LowKeyCityName),
-    // );
-
     fetchData();
-  }, [setAlert, flatsList, searchParam]);
+  }, [setAlert, searchParam]);
 
   return (
     <List>
