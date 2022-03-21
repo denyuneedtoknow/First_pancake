@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef, useEffect } from 'react';
+import React, { useContext, useRef, useEffect } from 'react';
 import Input from '@mui/material/Input';
 
 import { UIContext } from '../UIContext';
@@ -19,7 +19,6 @@ const FlatsSearcher: React.FC<FlatsSearcherProps> = ({ onSubmit }) => {
           types: ['geocode'],
         },
       );
-      // document.addEventListener('DOMContentLoaded', autocomplete);
       const fillInAddress = () => {
         try {
           const place = autocomplete.getPlace();
