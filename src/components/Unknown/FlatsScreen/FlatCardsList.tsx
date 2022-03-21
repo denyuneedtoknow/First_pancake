@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { List } from '@mui/material';
 import { DocumentData } from '@firebase/firestore-types';
 import { UIContext } from '../UIContext';
@@ -8,7 +8,6 @@ import FlatCard from './FlatCard';
 
 const FlatCardsList: React.FC = () => {
   const [flatsList, setFlatsList] = useState<DocumentData[]>([]);
-  const history = useHistory();
   const location = useLocation();
   const searchParam = new URLSearchParams(location.search).get('city') ?? '';
 
@@ -22,8 +21,7 @@ const FlatCardsList: React.FC = () => {
             snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })),
           );
         }
-        if (searchParam) {
-          console.log(searchParam);
+        if (searchParam !== '') {
           const snapshot = await GetFlatsListByCity(searchParam);
           setFlatsList(
             snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })),

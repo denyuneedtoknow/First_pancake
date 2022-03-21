@@ -8,7 +8,6 @@ import { Typography } from '@mui/material';
 import { Formik } from 'formik';
 import validationSchema from '../ValidationSchema';
 import image from '../design/Hero_img.jpg';
-import { ReactComponent as Logo } from '../design/logo.svg';
 import PasswordToggle from '../PasswordToggle';
 import app from '../../../common/firebaseApp';
 import { UIContext } from '../../Unknown/UIContext';

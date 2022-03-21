@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FocusEvent, useState } from 'react';
+import React, { useState } from 'react';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import TextField, { StandardTextFieldProps } from '@mui/material/TextField';
 import Box from '@mui/material/Box';
@@ -6,17 +6,12 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 
 interface PasswordToggleProps extends StandardTextFieldProps {
-  // form: {
-  //   touched: any;
-  //   errors: any;
-  // };
   name: string;
 }
 
 const PasswordToggle: React.FC<PasswordToggleProps> = ({
   name,
   label,
-  // form,
   helperText,
   error,
   onChange,

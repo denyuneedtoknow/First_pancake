@@ -16,12 +16,8 @@ import { Flat } from '../../../../types';
 const FlatCard: React.FC<Flat> = ({
   cityName,
   address,
-  latitude,
-  longitude,
   description,
   dailyPriceUsd,
-  photoUrl,
-  publishedAt,
 }) => {
   return (
     <ListItem>
