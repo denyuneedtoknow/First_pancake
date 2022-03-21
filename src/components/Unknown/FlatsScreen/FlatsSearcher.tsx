@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import TextField from '@mui/material/TextField';
+import { ErrorBoundary } from 'react-error-boundary';
 import Input from '@mui/material/Input';
 
 import { UIContext } from '../UIContext';
@@ -8,7 +8,6 @@ interface FlatsSearcherProps {
   onSubmit: any;
 }
 
-// declare const google: google;
 let autocomplete: any;
 const FlatsSearcher: React.FC<FlatsSearcherProps> = ({ onSubmit }) => {
   const { setAlert } = useContext(UIContext);
@@ -16,9 +15,11 @@ const FlatsSearcher: React.FC<FlatsSearcherProps> = ({ onSubmit }) => {
   const inputValue = document.getElementById(
     'autocomplete',
   ) as HTMLInputElement;
+  document.addEventListener('DOMContentLoaded', autocomplete);
   autocomplete = new google.maps.places.Autocomplete(inputValue, {
     types: ['geocode'],
   });
+
   const fillInAddress = async () => {
     try {
       const place = await autocomplete.getPlace();
